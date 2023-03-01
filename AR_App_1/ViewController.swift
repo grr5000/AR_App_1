@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import ARKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ARSCNViewDelegate {
 
+    @IBOutlet var sceneView: ARSCNView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let config = ARWorldTrackingConfiguration()
+        config.planeDetection = .horizontal
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints,ARSCNDebugOptions.showWorldOrigin]
+        sceneView.delegate = self
+        sceneView.session.run(config)
     }
 
 
